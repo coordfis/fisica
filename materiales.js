@@ -9,7 +9,7 @@ window.FISICA_2027 = {
     { id: 'vacaciones-diverticreativas', nombre: 'Vacaciones DivertiCreativas', etiqueta: 'VACACIONES', descripcion: 'Recursos para aprender, explorar y reforzar durante las vacaciones.', icono: 'sun', color: 'amber', recursos: [
       { titulo: 'Libros', tipo: 'libros', url: 'https://drive.google.com/drive/folders/1TVgRhvPazBMvKTNQThMYQ328OppT1eK5?usp=drive_link' },
       { titulo: 'Modelo de diapositivas', tipo: 'diapositivas', url: 'https://docs.google.com/presentation/d/14QKeSj2iGzx0HM1bqixLhbDf2s-D7Loz/edit?usp=drive_link&ouid=106404153639709258220&rtpof=true&sd=true' },
-      { titulo: 'PPTs', tipo: 'diapositivas', url: 'https://drive.google.com/drive/folders/1-hBSICLtpckyFRkLeInLjR4FtTAlrggA?usp=drive_link' }
+      { titulo: 'Diapositivas', tipo: 'diapositivas', url: 'https://drive.google.com/drive/folders/1-hBSICLtpckyFRkLeInLjR4FtTAlrggA?usp=drive_link' }
     ] },
     { id: 'verano-san-marcos', nombre: 'Verano San Marcos', etiqueta: 'PREUNIVERSITARIO', descripcion: 'Materiales del ciclo de verano con preparación San Marcos.', icono: 'sunrise', color: 'coral', recursos: [] },
     { id: 'verano-uni', nombre: 'Verano UNI', etiqueta: 'PREUNIVERSITARIO', descripcion: 'Materiales del ciclo de verano con preparación UNI.', icono: 'orbit', color: 'blue', recursos: [] },
