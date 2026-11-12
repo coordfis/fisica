@@ -1,21 +1,21 @@
 # Física 2027 · Saco Oliveros
 
-Portal de trabajo para organizar los materiales de la plana de Física durante 2027.
+Portal público de materiales de la plana de Física para 2027. Implementado con HTML, CSS y JavaScript; no requiere cuentas, inicio de sesión, dependencias ni servicios de ChatGPT.
 
 ## Programas
 
 - Vacaciones útiles
 - Verano San Marcos
 - Verano UNI
-- Aulas regulares: 1.º, 2.º, 3.º, 4.º y 5.º de secundaria
+- Aulas regulares: 1.º a 5.º de secundaria
 - Quinto UNI
 - Quinto San Marcos
 
-Cada programa o grado tiene libros, tareas, diapositivas, prácticas, evaluaciones y otros materiales. No se incluyen enlaces ficticios. Los apartados vacíos muestran un aviso de enlaces pendientes.
+Cada programa o grado organiza libros, tareas, diapositivas, prácticas, evaluaciones y otros materiales. Los enlaces pendientes se señalan sin incluir direcciones ficticias.
 
 ## Agregar enlaces
 
-Editar `dist/materiales.js` y agregar objetos al arreglo `recursos` del programa o grado correspondiente:
+Editar `materiales.js` y añadir un objeto al arreglo `recursos` del programa o grado correspondiente:
 
 ```js
 {
@@ -26,16 +26,18 @@ Editar `dist/materiales.js` y agregar objetos al arreglo `recursos` del programa
 }
 ```
 
-Tipos admitidos: `libros`, `tareas`, `diapositivas`, `practicas`, `evaluaciones`, `otros`.
+Tipos: `libros`, `tareas`, `diapositivas`, `practicas`, `evaluaciones`, `otros`.
 
-Los enlaces se guardan en el repositorio y se comparten con todas las personas que consultan la versión publicada. No existe una edición local que se confunda con cambios compartidos. El permiso de acceso a cada documento se administra en su servicio de origen.
+## Archivos
 
-## Estructura
+- `index.html`: estructura de la página.
+- `styles.css`: diseño adaptable a escritorio y celular.
+- `app.js`: navegación, buscador y filtros.
+- `materiales.js`: programas, grados y enlaces.
+- `.nojekyll`: publicación de los archivos estáticos sin Jekyll.
 
-- `dist/index.html`: página principal.
-- `dist/styles.css`: diseño adaptable a móvil y escritorio.
-- `dist/app.js`: navegación, buscador y filtros.
-- `dist/materiales.js`: programas, grados y enlaces.
-- `.openai/hosting.json`: identidad y configuración de la publicación en Sites.
+## Publicación en GitHub Pages
 
-Sitio estático sin dependencias ni compilación. Para GitHub Pages se puede servir la carpeta `dist` mediante un flujo de publicación, si posteriormente se habilita GitHub Pages en el repositorio. La publicación inicial usa Sites.
+El sitio está preparado para publicarse desde la raíz de la rama `gh-pages`. En Settings → Pages, seleccionar **Deploy from a branch → gh-pages → /(root)** y guardar si no estuviera activado automáticamente.
+
+La rama `main` contiene también el código. Para publicar cambios, actualizar `gh-pages` con el contenido de `main`. No se necesita compilar ni instalar nada. Los permisos de cada documento enlazado se administran en Google Drive u otro servicio de origen.
