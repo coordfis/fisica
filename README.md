@@ -4,7 +4,7 @@ Portal público de materiales de la plana de Física para 2027. Implementado con
 
 ## Programas
 
-- Vacaciones útiles
+- Vacaciones DivertiCreativas
 - Verano San Marcos
 - Verano UNI
 - Aulas regulares: 1.º a 5.º de secundaria

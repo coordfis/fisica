@@ -6,7 +6,11 @@
 */
 window.FISICA_2027 = {
   programas: [
-    { id: 'vacaciones-utiles', nombre: 'Vacaciones útiles', etiqueta: 'VACACIONES', descripcion: 'Recursos para aprender, explorar y reforzar durante las vacaciones.', icono: 'sun', color: 'amber', recursos: [{ titulo: 'Abrir libros de Vacaciones útiles', tipo: 'libros', url: 'https://drive.google.com/drive/folders/1TVgRhvPazBMvKTNQThMYQ328OppT1eK5?usp=drive_link', descripcion: 'Carpeta de libros en Google Drive.' }] },
+    { id: 'vacaciones-diverticreativas', nombre: 'Vacaciones DivertiCreativas', etiqueta: 'VACACIONES', descripcion: 'Recursos para aprender, explorar y reforzar durante las vacaciones.', icono: 'sun', color: 'amber', recursos: [
+      { titulo: 'Libros', tipo: 'libros', url: 'https://drive.google.com/drive/folders/1TVgRhvPazBMvKTNQThMYQ328OppT1eK5?usp=drive_link' },
+      { titulo: 'Modelo de diapositivas', tipo: 'diapositivas', url: 'https://docs.google.com/presentation/d/14QKeSj2iGzx0HM1bqixLhbDf2s-D7Loz/edit?usp=drive_link&ouid=106404153639709258220&rtpof=true&sd=true' },
+      { titulo: 'PPTs', tipo: 'diapositivas', url: 'https://drive.google.com/drive/folders/1-hBSICLtpckyFRkLeInLjR4FtTAlrggA?usp=drive_link' }
+    ] },
     { id: 'verano-san-marcos', nombre: 'Verano San Marcos', etiqueta: 'PREUNIVERSITARIO', descripcion: 'Materiales del ciclo de verano con preparación San Marcos.', icono: 'sunrise', color: 'coral', recursos: [] },
     { id: 'verano-uni', nombre: 'Verano UNI', etiqueta: 'PREUNIVERSITARIO', descripcion: 'Materiales del ciclo de verano con preparación UNI.', icono: 'orbit', color: 'blue', recursos: [] },
     { id: 'aulas-regulares', nombre: 'Aulas regulares', etiqueta: 'SECUNDARIA', descripcion: 'Todo el material escolar, organizado de primero a quinto grado.', icono: 'school', color: 'green', grados: [
