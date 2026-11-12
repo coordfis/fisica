@@ -1,0 +1,8 @@
+{
+  "name": "fisica-2027",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/access.test.js"
+  }
+}

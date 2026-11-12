@@ -1,6 +1,8 @@
 # Física 2027 · Saco Oliveros
 
-Portal público de materiales de la plana de Física para 2027. Implementado con HTML, CSS y JavaScript; no requiere cuentas, inicio de sesión, dependencias ni servicios de ChatGPT.
+Portal de materiales de la plana de Física para 2027, con inicio de sesión de Google y lectura de materiales autorizada por Firebase Authentication y Firestore.
+
+La integración de acceso está preparada en esta rama y requiere completar la configuración del servidor antes de publicarse. Ver `firebase/ACTIVACION.md`.
 
 ## Programas
 
@@ -11,11 +13,11 @@ Portal público de materiales de la plana de Física para 2027. Implementado con
 - Quinto UNI
 - Quinto San Marcos
 
-Cada programa o grado organiza libros, tareas, diapositivas, prácticas, evaluaciones y otros materiales. Los enlaces pendientes se señalan sin incluir direcciones ficticias.
+Cada programa o grado organiza libros, tareas, diapositivas, prácticas, evaluaciones y otros materiales.
 
 ## Agregar enlaces
 
-Editar `materiales.js` y añadir un objeto al arreglo `recursos` del programa o grado correspondiente:
+Actualizar el documento protegido `portales/fisica2027` en Firestore y añadir un objeto al arreglo `recursos` del programa o grado correspondiente:
 
 ```js
 {
@@ -33,11 +35,15 @@ Tipos: `libros`, `tareas`, `diapositivas`, `practicas`, `evaluaciones`, `otros`.
 - `index.html`: estructura de la página.
 - `styles.css`: diseño adaptable a escritorio y celular.
 - `app.js`: navegación y accesos a los materiales, con una interfaz minimalista sin iconos, buscadores ni filtros.
-- `materiales.js`: programas, grados y enlaces.
+- `auth.js`: ingreso con Google, carga autorizada y cierre de sesión.
+- `access-policy.js`: filtro de cuentas y control del estado de acceso.
+- `firebase-config.js`: configuración pública del cliente Firebase.
+- `firebase/firestore.rules`: propuesta de reglas que protege los materiales y conserva los permisos de Sin Límites.
+- `tests/access.test.js`: pruebas del control de acceso y de los cambios de sesión.
 - `.nojekyll`: publicación de los archivos estáticos sin Jekyll.
 
 ## Publicación en GitHub Pages
 
 El sitio está preparado para publicarse desde la raíz de la rama `gh-pages`. En Settings → Pages, seleccionar **Deploy from a branch → gh-pages → /(root)** y guardar si no estuviera activado automáticamente.
 
-La rama `main` contiene también el código. Para publicar cambios, actualizar `gh-pages` con el contenido de `main`. No se necesita compilar ni instalar nada. Los permisos de cada documento enlazado se administran en Google Drive u otro servicio de origen.
+La rama `main` contiene también el código. Para publicar cambios, actualizar `gh-pages` con el contenido de `main`. No se necesita compilar. Antes de publicar esta integración debe completarse `firebase/ACTIVACION.md`. Los permisos de cada documento enlazado se administran en Google Drive u otro servicio de origen.
