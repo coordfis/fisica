@@ -6,7 +6,7 @@
 */
 window.FISICA_2027 = {
   programas: [
-    { id: 'vacaciones-utiles', nombre: 'Vacaciones útiles', etiqueta: 'VACACIONES', descripcion: 'Recursos para aprender, explorar y reforzar durante las vacaciones.', icono: 'sun', color: 'amber', recursos: [] },
+    { id: 'vacaciones-utiles', nombre: 'Vacaciones útiles', etiqueta: 'VACACIONES', descripcion: 'Recursos para aprender, explorar y reforzar durante las vacaciones.', icono: 'sun', color: 'amber', recursos: [{ titulo: 'Abrir libros de Vacaciones útiles', tipo: 'libros', url: 'https://drive.google.com/drive/folders/1TVgRhvPazBMvKTNQThMYQ328OppT1eK5?usp=drive_link', descripcion: 'Carpeta de libros en Google Drive.' }] },
     { id: 'verano-san-marcos', nombre: 'Verano San Marcos', etiqueta: 'PREUNIVERSITARIO', descripcion: 'Materiales del ciclo de verano con preparación San Marcos.', icono: 'sunrise', color: 'coral', recursos: [] },
     { id: 'verano-uni', nombre: 'Verano UNI', etiqueta: 'PREUNIVERSITARIO', descripcion: 'Materiales del ciclo de verano con preparación UNI.', icono: 'orbit', color: 'blue', recursos: [] },
     { id: 'aulas-regulares', nombre: 'Aulas regulares', etiqueta: 'SECUNDARIA', descripcion: 'Todo el material escolar, organizado de primero a quinto grado.', icono: 'school', color: 'green', grados: [
