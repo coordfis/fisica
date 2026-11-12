@@ -32,7 +32,7 @@ Tipos: `libros`, `tareas`, `diapositivas`, `practicas`, `evaluaciones`, `otros`.
 
 - `index.html`: estructura de la página.
 - `styles.css`: diseño adaptable a escritorio y celular.
-- `app.js`: navegación, buscador y filtros.
+- `app.js`: navegación y accesos a los materiales, con una interfaz minimalista sin iconos, buscadores ni filtros.
 - `materiales.js`: programas, grados y enlaces.
 - `.nojekyll`: publicación de los archivos estáticos sin Jekyll.
 

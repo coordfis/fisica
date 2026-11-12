@@ -1,38 +1,112 @@
 'use strict';
-const {programas,tipos}=window.FISICA_2027;
-const paths={home:'<path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1Z"/>',sun:'<circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/>',sunrise:'<path d="M3 18h18M5 22h14M7 18a5 5 0 0 1 10 0M12 3v5M3 11l3 2m15-2-3 2M12 3 9 6m3-3 3 3"/>',orbit:'<ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(-35 12 12)"/><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(35 12 12)"/><ellipse cx="12" cy="12" rx="4" ry="10"/><circle cx="12" cy="12" r="1"/>',school:'<path d="M3 21V9h5V5l4-3 4 3v4h5v12H3m5-12v12m8-12v12M5 12h1m-1 4h1m12-4h1m-1 4h1M10 21v-5h4v5"/><circle cx="12" cy="9" r="2"/>',compass:'<circle cx="12" cy="12" r="9"/><path d="m16 8-2 6-6 2 2-6Z"/>',graduation:'<path d="m2 8 10-5 10 5-10 5Zm4 3v6c4 3 8 3 12 0v-6m4-3v8"/>',book:'<path d="M12 5c-3-2-7-2-10-1v15c3-1 7-1 10 1 3-2 7-2 10-1V4c-3-1-7-1-10 1Zm0 0v15"/>',clipboard:'<rect x="5" y="4" width="14" height="18" rx="2"/><rect x="9" y="2" width="6" height="4" rx="1"/><path d="M9 11h6m-6 4h6"/>',slides:'<rect x="2" y="3" width="20" height="14" rx="1"/><path d="M12 17v5m-4 0h8M6 12l4-4 4 3 4-5"/>',pencil:'<path d="m15 4 5 5M3 21l5-1L21 7a2 2 0 0 0-5-5L3 15Z"/>',check:'<rect x="4" y="3" width="16" height="19" rx="2"/><path d="m8 12 3 3 5-6M9 3V1m6 2V1"/>',folder:'<path d="M3 6h7l2 3h9v11H3Zm0 0V4h7l2 3h8v2"/>',arrow:'<path d="M4 12h16m-5-5 5 5-5 5"/>',external:'<path d="M14 3h7v7m0-7-11 11M10 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-6"/>',search:'<circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/>',clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',info:'<circle cx="12" cy="12" r="9"/><path d="M12 11v6m0-10v.2"/>',menu:'<path d="M3 6h18M3 12h18M3 18h18"/>'};
-const icon=n=>`<svg viewBox="0 0 24 24" aria-hidden="true">${paths[n]||paths.folder}</svg>`;
-const esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const normalize=s=>String(s).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
-const valid=r=>{try{return Boolean(r.titulo)&&['https:','http:'].includes(new URL(r.url).protocol)&&tipos.some(t=>t.id===r.tipo);}catch{return false;}};
-const allResources=p=>(p.grados?p.grados.flatMap(g=>g.recursos):p.recursos).filter(valid);
-const main=document.querySelector('main');
-const sidebar=document.querySelector('#sidebar'),overlay=document.querySelector('#overlay'),menu=document.querySelector('#menu-button');
-menu.innerHTML=icon('menu');
-function closeMenu(){sidebar.classList.remove('open');overlay.hidden=true;menu.setAttribute('aria-expanded','false');menu.setAttribute('aria-label','Abrir menú');}
-menu.onclick=()=>{const open=!sidebar.classList.contains('open');sidebar.classList.toggle('open',open);overlay.hidden=!open;menu.setAttribute('aria-expanded',String(open));menu.setAttribute('aria-label',open?'Cerrar menú':'Abrir menú');};
-overlay.onclick=closeMenu;document.addEventListener('keydown',e=>{if(e.key==='Escape')closeMenu();});
-function searchInput(id,placeholder){return `<div class="search-wrap">${icon('search')}<input type="search" id="${id}" placeholder="${placeholder}" aria-label="${placeholder}" autocomplete="off"><button type="button" data-clear="${id}" aria-label="Limpiar búsqueda">×</button></div>`;}
-function wireClear(){document.querySelectorAll('[data-clear]').forEach(b=>b.onclick=()=>{const input=document.getElementById(b.dataset.clear);input.value='';input.dispatchEvent(new Event('input'));input.focus();});}
-function note(){return `<div class="note">${icon('info')}<div><strong>Un espacio que crece con nuestro equipo</strong><p>Iremos incorporando los enlaces de libros, tareas y materiales durante el año.</p></div></div>`;}
-function empty(title,description){return `<div class="empty">${icon('search')}<h3>${title}</h3><p>${description}</p></div>`;}
-function resourceLink(r){return `<a class="resource-link" href="${esc(r.url)}" target="_blank" rel="noopener noreferrer"><span>${esc(r.titulo)}${icon('external')}</span>${r.descripcion?`<small>${esc(r.descripcion)}</small>`:''}</a>`;}
-function programCard(p){const count=allResources(p).length;return `<a class="program-card" href="#${p.id}" aria-label="Abrir ${esc(p.nombre)}"><div class="card-top"><span class="icon-box ${p.color}">${icon(p.icono)}</span><span class="badge">${count?`${count} enlace${count!==1?'s':''}`:'Por incorporar'}</span></div><div class="card-label">${p.etiqueta}</div><h3>${p.nombre}</h3><p>${p.descripcion}</p><div class="card-bottom"><span>${p.grados?'1.º · 2.º · 3.º · 4.º · 5.º de secundaria':'Libros, tareas y más'}</span>${icon('arrow')}</div></a>`;}
-const art=`<div class="orbit-art" aria-hidden="true"><span class="art-label">Física en equipo</span><svg viewBox="0 0 240 200"><ellipse cx="120" cy="100" rx="95" ry="37" transform="rotate(-30 120 100)"/><ellipse cx="120" cy="100" rx="95" ry="37" transform="rotate(30 120 100)"/><ellipse cx="120" cy="100" rx="37" ry="95"/><circle cx="120" cy="100" r="10" fill="currentColor" stroke="none"/><circle cx="58" cy="52" r="4" fill="currentColor"/><circle cx="176" cy="150" r="4" fill="currentColor"/><circle cx="152" cy="51" r="4" fill="currentColor"/><path d="M17 151h8m-4-4v8M203 40h8m-4-4v8"/></svg><span class="art-label bottom">Ideas que se convierten en aprendizaje.</span></div>`;
-function home(){main.innerHTML=`<section class="hero" aria-labelledby="home-title"><div class="hero-copy"><div class="eyebrow">COORDINACIÓN ACADÉMICA · FÍSICA</div><h1 id="home-title">Preparar juntos.<br><em>Enseñar mejor.</em></h1><p>El punto de encuentro de nuestra plana de Física.<br>Todos los materiales de 2027, en un solo lugar.</p><div class="hero-tags"><span>${icon('folder')}6 programas</span><span>${icon('school')}5 grados de secundaria</span><span>${icon('book')}Un mismo equipo</span></div></div>${art}</section><section aria-labelledby="programas-title"><div class="section-heading"><div><h2 id="programas-title">Nuestros programas</h2><p>Elige un programa para consultar sus materiales.</p></div>${searchInput('global-search','Buscar programas o materiales…')}</div><div id="home-results" aria-live="polite"></div></section>${note()}`;
-const results=document.querySelector('#home-results');
-function search(){const q=normalize(document.querySelector('#global-search').value.trim());const selected=programas.filter(p=>normalize(p.nombre+' '+(p.grados?'primero segundo tercero cuarto quinto secundaria':'' )).includes(q));let html=selected.length?`<div class="program-grid">${selected.map(programCard).join('')}</div>`:'';if(q){const matches=programas.flatMap(p=>(p.grados?p.grados.map(g=>({nombre:g.nombre,recursos:g.recursos})):[{nombre:'',recursos:p.recursos}]).flatMap(g=>g.recursos.filter(valid).filter(r=>normalize(r.titulo+' '+(r.descripcion||'')+' '+tipos.find(t=>t.id===r.tipo).nombre+' '+p.nombre+' '+g.nombre).includes(q)).map(r=>({p,g,r}))));if(matches.length)html+=`<div class="section-heading"><h2>Materiales encontrados</h2></div><div class="search-results">${matches.map(({p,g,r})=>`<a class="result-card" href="${esc(r.url)}" target="_blank" rel="noopener noreferrer"><div class="search-result-context">${p.nombre}${g.nombre?' / '+g.nombre:''} · ${tipos.find(t=>t.id===r.tipo).nombre}</div><strong>${esc(r.titulo)}${icon('external')}</strong>${r.descripcion?`<p>${esc(r.descripcion)}</p>`:''}</a>`).join('')}</div>`;}results.innerHTML=html||empty('Sin resultados','Prueba con el nombre de un programa. Los enlaces se irán incorporando.');}
-document.querySelector('#global-search').oninput=search;search();wireClear();}
-function detail(p,gradeId){const grade=p.grados?.find(g=>g.id===gradeId)||p.grados?.[0];const resources=(grade?grade.recursos:p.recursos).filter(valid);main.innerHTML=`<a class="back" href="#inicio">${icon('arrow')}Todos los programas</a><section aria-labelledby="detail-title"><div class="detail-head"><span class="icon-box ${p.color}">${icon(p.icono)}</span><div><h1 id="detail-title">${p.nombre}</h1><p>${p.descripcion}</p></div></div>${p.grados?`<nav class="grade-tabs" aria-label="Grados de secundaria">${p.grados.map(g=>`<a href="#${p.id}/${g.id}" ${g.id===grade.id?'aria-current="page"':''}>${g.nombre.split(' de')[0]} grado</a>`).join('')}</nav>`:''}<div class="resources-toolbar"><div><h2>${grade?grade.nombre:'Materiales del programa'}</h2><span class="small-count">${resources.length} enlace${resources.length!==1?'s':''} disponible${resources.length!==1?'s':''}</span></div><div class="filters">${searchInput('resource-search','Buscar en este apartado…')}<select id="type-filter" aria-label="Filtrar por tipo de material"><option value="all">Todos los materiales</option>${tipos.filter(t=>resources.some(r=>r.tipo===t.id)).map(t=>`<option value="${t.id}">${t.nombre}</option>`).join('')}</select></div></div><div class="resource-grid" id="resources" aria-live="polite"></div></section>${note()}`;
-function filter(){
-  const q=normalize(document.querySelector('#resource-search').value.trim());
-  const type=document.querySelector('#type-filter').value;
-  const selectedTypes=tipos.filter(t=>type==='all'||t.id===type);
-  const matches=resources.filter(r=>(type==='all'||r.tipo===type)&&normalize(r.titulo+' '+(r.descripcion||'')+' '+(tipos.find(t=>t.id===r.tipo)?.nombre||'')).includes(q));
-  const active=selectedTypes.flatMap(t=>matches.filter(r=>r.tipo===t.id).map(r=>`<a class="resource-tile" href="${esc(r.url)}" target="_blank" rel="noopener noreferrer"><span class="tile-icon">${icon(t.icono)}</span><h3>${esc(r.titulo)}</h3><span class="tile-arrow">${icon('external')}</span></a>`));
-  document.querySelector('#resources').innerHTML=active.join('')||empty('No se encontraron materiales','Prueba otra búsqueda o cambia el tipo de material.');
+
+const { programas, tipos } = window.FISICA_2027;
+const esc = value => String(value ?? '').replace(/[&<>"']/g, character => ({
+  '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+}[character]));
+
+const valid = resource => {
+  try {
+    return Boolean(resource.titulo)
+      && ['https:', 'http:'].includes(new URL(resource.url).protocol)
+      && tipos.some(type => type.id === resource.tipo);
+  } catch {
+    return false;
+  }
+};
+const allResources = program => (program.grados
+  ? program.grados.flatMap(grade => grade.recursos)
+  : program.recursos).filter(valid);
+
+const main = document.querySelector('main');
+const sidebar = document.querySelector('#sidebar');
+const overlay = document.querySelector('#overlay');
+const menu = document.querySelector('#menu-button');
+
+function closeMenu() {
+  sidebar.classList.remove('open');
+  overlay.hidden = true;
+  menu.textContent = 'Menú';
+  menu.setAttribute('aria-expanded', 'false');
+  menu.setAttribute('aria-label', 'Abrir menú');
 }
-document.querySelector('#resource-search').oninput=filter;document.querySelector('#type-filter').onchange=filter;filter();wireClear();}
-function route(){let hash=location.hash.slice(1);const [routeId,gradeId]=hash.split('/');const id=routeId==='vacaciones-utiles'?'vacaciones-diverticreativas':routeId;const program=programas.find(p=>p.id===id);document.querySelector('#navigation').innerHTML=`<a href="#inicio" class="${!program?'active':''}" ${!program?'aria-current="page"':''}>${icon('home')}Vista general</a><div class="nav-divider"></div>${programas.map(p=>`<a href="#${p.id}" class="${program===p?'active':''}" ${program===p?'aria-current="page"':''}>${icon(p.icono)}${p.nombre}</a>`).join('')}`;document.querySelector('#breadcrumb').textContent=program?program.nombre:'Materiales 2027';document.title=(program?program.nombre:'Física 2027')+' · Saco Oliveros';if(program)detail(program,gradeId);else home();closeMenu();window.scrollTo(0,0);}
-document.querySelector('.skip').addEventListener('click',e=>{e.preventDefault();main.focus();main.scrollIntoView();});
-window.addEventListener('hashchange',()=>{route();main.focus({preventScroll:true});});route();
+menu.onclick = () => {
+  const open = !sidebar.classList.contains('open');
+  sidebar.classList.toggle('open', open);
+  overlay.hidden = !open;
+  menu.textContent = open ? 'Cerrar' : 'Menú';
+  menu.setAttribute('aria-expanded', String(open));
+  menu.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+};
+overlay.onclick = closeMenu;
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape') closeMenu();
+});
+
+function programCard(program) {
+  const count = allResources(program).length;
+  return '<a class="program-card" href="#' + program.id + '" aria-label="Abrir ' + esc(program.nombre) + '">'
+    + '<span class="badge">' + (count ? count + ' enlace' + (count !== 1 ? 's' : '') : 'Por incorporar') + '</span>'
+    + '<div class="card-label">' + esc(program.etiqueta) + '</div>'
+    + '<h3>' + esc(program.nombre) + '</h3><p>' + esc(program.descripcion) + '</p>'
+    + '<div class="card-bottom">' + (program.grados ? '1.º · 2.º · 3.º · 4.º · 5.º de secundaria' : 'Libros, tareas y más') + '</div></a>';
+}
+
+function home() {
+  main.innerHTML = '<section class="hero" aria-labelledby="home-title"><div class="hero-copy">'
+    + '<div class="eyebrow">COORDINACIÓN ACADÉMICA · FÍSICA</div>'
+    + '<h1 id="home-title">Preparar juntos.<br>Enseñar mejor.</h1>'
+    + '<p>El punto de encuentro de nuestra plana de Física.<br>Todos los materiales de 2027, en un solo lugar.</p>'
+    + '<div class="hero-tags"><span>6 programas</span><span>5 grados de secundaria</span><span>Un mismo equipo</span></div>'
+    + '</div></section><section aria-labelledby="programas-title"><div class="section-heading">'
+    + '<h2 id="programas-title">Nuestros programas</h2><p>Elige un programa para consultar sus materiales.</p></div>'
+    + '<div class="program-grid">' + programas.map(programCard).join('') + '</div></section>';
+}
+
+function detail(program, gradeId) {
+  const grade = program.grados?.find(item => item.id === gradeId) || program.grados?.[0];
+  const resources = (grade ? grade.recursos : program.recursos).filter(valid);
+  const tabs = program.grados ? '<nav class="grade-tabs" aria-label="Grados de secundaria">'
+    + program.grados.map(item => '<a href="#' + program.id + '/' + item.id + '" '
+      + (item.id === grade.id ? 'aria-current="page"' : '') + '>'
+      + esc(item.nombre.split(' de')[0]) + ' grado</a>').join('') + '</nav>' : '';
+  const tiles = tipos.flatMap(type => resources.filter(resource => resource.tipo === type.id)
+    .map(resource => '<a class="resource-tile" href="' + esc(resource.url)
+      + '" target="_blank" rel="noopener noreferrer"><h3>' + esc(resource.titulo) + '</h3></a>')).join('');
+
+  main.innerHTML = '<a class="back" href="#inicio">Todos los programas</a>'
+    + '<section aria-labelledby="detail-title"><div class="detail-head"><h1 id="detail-title">'
+    + esc(program.nombre) + '</h1><p>' + esc(program.descripcion) + '</p></div>' + tabs
+    + '<div class="resources-heading"><h2>' + (grade ? esc(grade.nombre) : 'Materiales del programa')
+    + '</h2><span class="small-count">' + resources.length + ' enlace' + (resources.length !== 1 ? 's' : '')
+    + ' disponible' + (resources.length !== 1 ? 's' : '') + '</span></div>'
+    + (resources.length ? '<div class="resource-grid">' + tiles + '</div>'
+      : '<p class="empty">Aún no hay materiales disponibles.</p>') + '</section>';
+}
+
+function route() {
+  const [routeId, gradeId] = location.hash.slice(1).split('/');
+  const id = routeId === 'vacaciones-utiles' ? 'vacaciones-diverticreativas' : routeId;
+  const program = programas.find(item => item.id === id);
+  document.querySelector('#navigation').innerHTML = '<a href="#inicio" class="' + (!program ? 'active' : '')
+    + '" ' + (!program ? 'aria-current="page"' : '') + '>Vista general</a><div class="nav-divider"></div>'
+    + programas.map(item => '<a href="#' + item.id + '" class="' + (program === item ? 'active' : '')
+      + '" ' + (program === item ? 'aria-current="page"' : '') + '>' + esc(item.nombre) + '</a>').join('');
+  document.querySelector('#breadcrumb').textContent = program ? program.nombre : 'Materiales 2027';
+  document.title = (program ? program.nombre : 'Física 2027') + ' · Saco Oliveros';
+  if (program) detail(program, gradeId);
+  else home();
+  closeMenu();
+  window.scrollTo(0, 0);
+}
+
+document.querySelector('.skip').addEventListener('click', event => {
+  event.preventDefault();
+  main.focus();
+  main.scrollIntoView();
+});
+window.addEventListener('hashchange', () => {
+  route();
+  main.focus({ preventScroll: true });
+});
+route();
