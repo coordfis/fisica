@@ -6,19 +6,30 @@
 <meta name="theme-color" content="#16375b"><title>Física 2027 · Saco Oliveros</title>
 <link rel="icon" type="image/jpeg" href="assets/logo-sin-limites.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=20261112-google1"><script type="module" src="auth.js?v=20261112-google1"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=20261112-visual1"><script type="module" src="auth.js?v=20261112-visual1"></script>
 </head>
 <body>
 <section class="auth-screen" id="auth-screen" aria-labelledby="login-title">
-  <div class="login-panel">
-    <img class="login-logo" src="assets/logo-sin-limites.jpg" width="44" height="44" alt="Saco Oliveros">
-    <p class="login-label">PLANA DE FÍSICA · SACO OLIVEROS</p>
-    <h1 id="login-title">Física 2027</h1>
-    <p class="login-copy">Ingresa con tu cuenta de Google autorizada para consultar los materiales.</p>
-    <button class="google-sign-in" id="google-sign-in" type="button" disabled>Verificando acceso…</button>
-    <p class="auth-status" id="auth-status" role="status" aria-live="polite"></p>
-    <p class="login-foot">Acceso exclusivo para las cuentas autorizadas.</p>
+  <div class="auth-story">
+    <div class="story-brand"><img src="assets/logo-sin-limites.jpg" width="44" height="44" alt=""><span>PLANA DE FÍSICA<small>SACO OLIVEROS</small></span></div>
+    <div class="story-copy">
+      <p class="story-label">MATERIALES DE TRABAJO</p>
+      <h2>Preparar juntos.<br><span>Enseñar mejor.</span></h2>
+      <p>Un lugar para compartir lo que nos ayuda a enseñar mejor.</p>
+    </div>
+    <div class="story-year" aria-hidden="true">2027</div>
+    <div class="story-bottom"><span>COORDINACIÓN ACADÉMICA</span><span>AÑO 2027</span></div>
+  </div>
+  <div class="login-shell">
+    <div class="login-panel">
+      <p class="login-label">BIENVENIDO A FÍSICA 2027</p>
+      <h1 id="login-title">Tu espacio<br>de trabajo.</h1>
+      <p class="login-copy">Consulta los materiales de nuestra plana de Física con tu cuenta de Google autorizada.</p>
+      <button class="google-sign-in" id="google-sign-in" type="button" disabled>Verificando acceso…</button>
+      <p class="auth-status" id="auth-status" role="status" aria-live="polite"></p>
+      <p class="login-foot">Acceso exclusivo para las cuentas autorizadas.</p>
+    </div>
   </div>
 </section>
 <div id="portal" hidden>
@@ -26,7 +37,7 @@
 <div class="overlay" id="overlay" hidden></div>
 <aside class="sidebar" id="sidebar" aria-label="Navegación principal">
 <a class="brand" href="#inicio"><img class="brand-logo" src="assets/logo-sin-limites.jpg" width="44" height="44" alt="Logo institucional"><span>FÍSICA 2027<small>PLANA · SACO OLIVEROS</small></span></a>
-<div class="workspace-label">ESPACIO DE TRABAJO <span>2027</span></div>
+<div class="workspace-label">PROGRAMAS <span>2027</span></div>
 <nav id="navigation"></nav>
 <div class="sidebar-foot">Un equipo. Un mismo objetivo.<small>Construimos juntos los materiales.</small></div>
 </aside>
