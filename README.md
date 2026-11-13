@@ -2,7 +2,7 @@
 
 Portal de materiales de la plana de Física para 2027, con inicio de sesión de Google y lectura de materiales autorizada por Firebase Authentication y Firestore.
 
-La integración de acceso está preparada en esta rama y utiliza el proyecto institucional `fisica-2027---saco-oliveros`, administrado con `coord.fis@sacooliveros.edu.pe`. Todavía requiere completar y verificar Authentication, Firestore y las reglas del servidor antes de publicarse. Ver `firebase/ACTIVACION.md`.
+El acceso utiliza el proyecto institucional `fisica-2027---saco-oliveros`, administrado con `coord.fis@sacooliveros.edu.pe`. Las capturas de configuración confirman el dominio autorizado, Firestore, las reglas publicadas y el documento de materiales. La comprobación final del ingreso con las cuentas permitidas se realiza en la web publicada. Ver `firebase/ACTIVACION.md`.
 
 ## Programas
 
@@ -46,4 +46,4 @@ Tipos: `libros`, `tareas`, `diapositivas`, `practicas`, `evaluaciones`, `otros`.
 
 El sitio está preparado para publicarse desde la raíz de la rama `gh-pages`. En Settings → Pages, seleccionar **Deploy from a branch → gh-pages → /(root)** y guardar si no estuviera activado automáticamente.
 
-La rama `main` contiene también el código. Para publicar cambios, actualizar `gh-pages` con el contenido de `main`. No se necesita compilar. Antes de publicar esta integración debe completarse `firebase/ACTIVACION.md`. Los permisos de cada documento enlazado se administran en Google Drive u otro servicio de origen.
+La rama `main` contiene también el código. Para publicar cambios, actualizar `gh-pages` con el contenido de `main`. No se necesita compilar. Verificar la pantalla sin sesión y completar las pruebas de ingreso descritas en `firebase/ACTIVACION.md`. Los permisos de cada documento enlazado se administran en Google Drive u otro servicio de origen.

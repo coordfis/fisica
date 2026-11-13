@@ -1,6 +1,6 @@
 # Activación del acceso de Física 2027
 
-Estado: proyecto institucional y aplicación web creados por Alex; configuración pública incorporada al borrador. Las capturas de Alex confirman el dominio autorizado `coordfis.github.io`, la base Firestore `(default)` y las reglas publicadas para los dos correos. Pendiente cargar los datos y verificar el proveedor Google y el acceso real del servidor. No publicar en `main` ni en `gh-pages` hasta completar esos pasos.
+Estado: proyecto institucional y aplicación web creados por Alex; configuración pública incorporada. Sus capturas confirman el dominio autorizado `coordfis.github.io`, la base Firestore `(default)`, las reglas publicadas para los dos correos y el campo `contenido` guardado en `portales/fisica2027`. Pendiente la prueba real de ingreso con Google y de lectura del documento en la web publicada. La validación local no sustituye esa comprobación.
 
 ## Administración y cuentas de ingreso
 
@@ -21,7 +21,7 @@ El proyecto personal de Sin Límites no se utiliza ni se modifica. No desplegar 
 4. Crear Firestore y publicar `firebase/firestore.rules` únicamente en el proyecto institucional. Las reglas exigen un token válido, correo verificado, proveedor `google.com` y exactamente uno de los dos correos permitidos. El resto de documentos queda cerrado a los clientes.
 5. En Datos, crear la colección `portales` y el documento `fisica2027`. Para facilitar la carga manual, añadir un único campo `contenido` de tipo `string` y pegar como valor un JSON con los arreglos `programas` y `tipos`, utilizando los materiales de la versión anterior del portal. También se admiten esos dos arreglos como campos estructurados del documento. Conservar los dos accesos actuales de Vacaciones DivertiCreativas: Libros y Diapositivas. La aplicación cliente no tiene permiso de escritura ni de listado.
 6. Probar las reglas contra solicitudes anónimas, ambas cuentas permitidas, un tercer correo de Gmail, otro correo institucional, un correo no verificado y un proveedor diferente.
-7. Probar el acceso real y el cierre de sesión, y publicar el cambio en `main` y `gh-pages` después de esas comprobaciones.
+7. Publicar la versión en `main` y `gh-pages`. Comprobar primero que un visitante sin sesión solo ve la pantalla de ingreso. A continuación, verificar el acceso real, la lectura del contenido y el cierre de sesión con las cuentas permitidas, así como el rechazo de una cuenta diferente. La activación no se considera completamente verificada hasta terminar esas pruebas reales.
 
 ## Comprobaciones locales
 
