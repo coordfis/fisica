@@ -1,10 +1,10 @@
 # Activación del acceso de Física 2027
 
-Estado: integración preparada. No publicar en `main` ni en `gh-pages` hasta configurar el proyecto institucional y verificar el acceso del servidor.
+Estado: proyecto institucional y aplicación web creados por Alex; configuración pública incorporada al borrador. Authentication, dominios autorizados, Firestore, reglas y datos todavía deben configurarse o verificarse. No publicar en `main` ni en `gh-pages` hasta completar esos pasos y comprobar el acceso del servidor.
 
 ## Administración y cuentas de ingreso
 
-Crear un proyecto Firebase propio para este portal, administrado con `coord.fis@sacooliveros.edu.pe`. Aún no se ha creado ni se ha asignado un identificador de proyecto.
+Proyecto Firebase propio de este portal: `fisica-2027---saco-oliveros`, administrado con `coord.fis@sacooliveros.edu.pe`. Aplicación web registrada: `1:763118242659:web:9a9802ca1bda81c3f8e156`.
 
 La propiedad y los permisos administrativos del proyecto son independientes de la lista de usuarios que pueden ingresar al portal. Los dos correos autorizados para consultar materiales siguen siendo:
 
@@ -15,8 +15,8 @@ El proyecto personal de Sin Límites no se utiliza ni se modifica. No desplegar 
 
 ## Configuración
 
-1. Crear o seleccionar el proyecto institucional dedicado desde la cuenta de coordinación. Confirmar que esa cuenta tiene permisos de administración.
-2. Registrar una aplicación web y completar `firebase-config.js` con su configuración pública. El cliente usa el nombre `fisica-portal`.
+1. Seleccionar el proyecto institucional `fisica-2027---saco-oliveros` desde la cuenta de coordinación y confirmar sus permisos administrativos.
+2. La aplicación web ya está registrada y su configuración pública está en `firebase-config.js`. El cliente usa el nombre `fisica-portal` y no inicializa Google Analytics.
 3. Habilitar Google en Authentication y autorizar `coordfis.github.io` como dominio de acceso. El proveedor debe admitir también la cuenta de Gmail personal autorizada; una pantalla de consentimiento limitada a usuarios internos del colegio impediría ese acceso.
 4. Crear Firestore y publicar `firebase/firestore.rules` únicamente en el proyecto institucional. Las reglas exigen un token válido, correo verificado, proveedor `google.com` y exactamente uno de los dos correos permitidos. El resto de documentos queda cerrado a los clientes.
 5. Crear el documento `portales/fisica2027` con los campos `programas` y `tipos`, utilizando los materiales de la versión anterior del portal. Conservar los dos accesos actuales de Vacaciones DivertiCreativas: Libros y Diapositivas. La aplicación cliente no tiene permiso de escritura ni de listado.

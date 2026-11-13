@@ -2,7 +2,7 @@
 
 Portal de materiales de la plana de Física para 2027, con inicio de sesión de Google y lectura de materiales autorizada por Firebase Authentication y Firestore.
 
-La integración de acceso está preparada en esta rama y requiere crear y configurar un proyecto Firebase propio con la cuenta institucional `coord.fis@sacooliveros.edu.pe` antes de publicarse. Ver `firebase/ACTIVACION.md`.
+La integración de acceso está preparada en esta rama y utiliza el proyecto institucional `fisica-2027---saco-oliveros`, administrado con `coord.fis@sacooliveros.edu.pe`. Todavía requiere completar y verificar Authentication, Firestore y las reglas del servidor antes de publicarse. Ver `firebase/ACTIVACION.md`.
 
 ## Programas
 
