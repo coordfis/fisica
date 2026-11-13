@@ -7,9 +7,21 @@
 <link rel="icon" type="image/jpeg" href="assets/logo-sin-limites.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=20261112-minimalista1"><script src="materiales.js?v=20261112-diverti3" defer></script><script src="app.js?v=20261112-minimalista1" defer></script>
+<link rel="stylesheet" href="styles.css?v=20261112-google1"><script type="module" src="auth.js?v=20261112-google1"></script>
 </head>
 <body>
+<section class="auth-screen" id="auth-screen" aria-labelledby="login-title">
+  <div class="login-panel">
+    <img class="login-logo" src="assets/logo-sin-limites.jpg" width="44" height="44" alt="Saco Oliveros">
+    <p class="login-label">PLANA DE FÍSICA · SACO OLIVEROS</p>
+    <h1 id="login-title">Física 2027</h1>
+    <p class="login-copy">Ingresa con tu cuenta de Google autorizada para consultar los materiales.</p>
+    <button class="google-sign-in" id="google-sign-in" type="button" disabled>Verificando acceso…</button>
+    <p class="auth-status" id="auth-status" role="status" aria-live="polite"></p>
+    <p class="login-foot">Acceso exclusivo para las cuentas autorizadas.</p>
+  </div>
+</section>
+<div id="portal" hidden>
 <a class="skip" href="#contenido">Ir al contenido</a>
 <div class="overlay" id="overlay" hidden></div>
 <aside class="sidebar" id="sidebar" aria-label="Navegación principal">
@@ -19,9 +31,10 @@
 <div class="sidebar-foot">Un equipo. Un mismo objetivo.<small>Construimos juntos los materiales.</small></div>
 </aside>
 <div class="page">
-<header class="topbar"><button class="menu-button" id="menu-button" aria-expanded="false" aria-controls="sidebar" aria-label="Abrir menú"></button><div class="breadcrumb">Plana de Física <span>/</span> <strong id="breadcrumb">Materiales 2027</strong></div><span class="year-pill"><span class="status-dot"></span> Año académico 2027</span></header>
+<header class="topbar"><button class="menu-button" id="menu-button" aria-expanded="false" aria-controls="sidebar" aria-label="Abrir menú"></button><div class="breadcrumb">Plana de Física <span>/</span> <strong id="breadcrumb">Materiales 2027</strong></div><div class="session-controls"><span class="session-email" id="session-email"></span><button class="sign-out" id="sign-out" type="button">Cerrar sesión</button></div></header>
 <main id="contenido" tabindex="-1"></main>
 <footer>Física · Saco Oliveros <span>Materiales de trabajo 2027</span></footer>
+</div>
 </div>
 <noscript><p>Activa JavaScript para consultar los programas y sus materiales.</p></noscript>
 </body></html>
