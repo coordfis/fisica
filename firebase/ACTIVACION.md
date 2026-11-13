@@ -1,6 +1,6 @@
 # Activación del acceso de Física 2027
 
-Estado: proyecto institucional y aplicación web creados por Alex; configuración pública incorporada al borrador. Authentication, dominios autorizados, Firestore, reglas y datos todavía deben configurarse o verificarse. No publicar en `main` ni en `gh-pages` hasta completar esos pasos y comprobar el acceso del servidor.
+Estado: proyecto institucional y aplicación web creados por Alex; configuración pública incorporada al borrador. Las capturas de Alex confirman el dominio autorizado `coordfis.github.io`, la base Firestore `(default)` y las reglas publicadas para los dos correos. Pendiente cargar los datos y verificar el proveedor Google y el acceso real del servidor. No publicar en `main` ni en `gh-pages` hasta completar esos pasos.
 
 ## Administración y cuentas de ingreso
 
@@ -19,7 +19,7 @@ El proyecto personal de Sin Límites no se utiliza ni se modifica. No desplegar 
 2. La aplicación web ya está registrada y su configuración pública está en `firebase-config.js`. El cliente usa el nombre `fisica-portal` y no inicializa Google Analytics.
 3. Habilitar Google en Authentication y autorizar `coordfis.github.io` como dominio de acceso. El proveedor debe admitir también la cuenta de Gmail personal autorizada; una pantalla de consentimiento limitada a usuarios internos del colegio impediría ese acceso.
 4. Crear Firestore y publicar `firebase/firestore.rules` únicamente en el proyecto institucional. Las reglas exigen un token válido, correo verificado, proveedor `google.com` y exactamente uno de los dos correos permitidos. El resto de documentos queda cerrado a los clientes.
-5. Crear el documento `portales/fisica2027` con los campos `programas` y `tipos`, utilizando los materiales de la versión anterior del portal. Conservar los dos accesos actuales de Vacaciones DivertiCreativas: Libros y Diapositivas. La aplicación cliente no tiene permiso de escritura ni de listado.
+5. En Datos, crear la colección `portales` y el documento `fisica2027`. Para facilitar la carga manual, añadir un único campo `contenido` de tipo `string` y pegar como valor un JSON con los arreglos `programas` y `tipos`, utilizando los materiales de la versión anterior del portal. También se admiten esos dos arreglos como campos estructurados del documento. Conservar los dos accesos actuales de Vacaciones DivertiCreativas: Libros y Diapositivas. La aplicación cliente no tiene permiso de escritura ni de listado.
 6. Probar las reglas contra solicitudes anónimas, ambas cuentas permitidas, un tercer correo de Gmail, otro correo institucional, un correo no verificado y un proveedor diferente.
 7. Probar el acceso real y el cierre de sesión, y publicar el cambio en `main` y `gh-pages` después de esas comprobaciones.
 

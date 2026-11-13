@@ -52,6 +52,20 @@ test('solo abre después de recibir los datos del servidor', async () => {
   assert.deepEqual(h.events.at(-1), ['portal', portal]);
 });
 
+test('abre los materiales guardados en el campo de texto contenido', async () => {
+  const h = harness({ readPortal: async () => ({ contenido: JSON.stringify(portal) }) });
+  await h.update({});
+  assert.deepEqual(h.events.at(-1), ['portal', portal]);
+});
+
+test('un campo contenido inválido mantiene el portal cerrado', async () => {
+  for (const contenido of ['{incompleto', 'null', '{"programas":[]}']) {
+    const h = harness({ readPortal: async () => ({ contenido }) });
+    await h.update({});
+    assert.equal(h.events.some(e => Array.isArray(e) && e[0] === 'portal'), false);
+  }
+});
+
 test('una lectura pendiente no vuelve a abrir el portal después de salir', async () => {
   let finish;
   const h = harness({ readPortal: () => new Promise(resolve => { finish = resolve; }) });

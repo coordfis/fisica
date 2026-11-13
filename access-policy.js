@@ -31,8 +31,12 @@ export function createAccessController({ getClaims, readPortal, clearPortal, sho
         await signOut();
         return;
       }
-      const data = await readPortal();
+      const record = await readPortal();
       if (current !== generation) return;
+      // La consola permite pegar todos los materiales en un único campo de texto.
+      const data = typeof record?.contenido === 'string'
+        ? JSON.parse(record.contenido)
+        : record;
       if (!data || !Array.isArray(data.programas) || !Array.isArray(data.tipos)) {
         throw new Error('portal/not-configured');
       }

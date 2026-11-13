@@ -17,7 +17,7 @@ Cada programa o grado organiza libros, tareas, diapositivas, prácticas, evaluac
 
 ## Agregar enlaces
 
-Actualizar el documento protegido `portales/fisica2027` en Firestore y añadir un objeto al arreglo `recursos` del programa o grado correspondiente:
+Actualizar el documento protegido `portales/fisica2027` en Firestore. Para la carga manual, el campo de texto `contenido` contiene un JSON con los arreglos `programas` y `tipos`. Añadir los enlaces al arreglo `recursos` del programa o grado correspondiente dentro de ese JSON:
 
 ```js
 {
