@@ -1,9 +1,11 @@
-// Configuración pública de la aplicación web; no contiene claves de servidor.
+// Pendiente: completar con la aplicación web de un proyecto Firebase propio
+// administrado mediante coord.fis@sacooliveros.edu.pe.
+// No reutilizar aquí la configuración del proyecto personal de Sin Límites.
 export const firebaseConfig = Object.freeze({
-  apiKey: 'AIzaSyCurhmnJ21SMqGM6G54t8QM8jcqO8jV0OE',
-  authDomain: 'sin-limites-12f07.firebaseapp.com',
-  projectId: 'sin-limites-12f07',
-  appId: '1:757098079298:web:068a9a7ea93149bfef79db'
+  apiKey: '',
+  authDomain: '',
+  projectId: '',
+  appId: ''
 });
 
 export const portalDocument = 'portales/fisica2027';

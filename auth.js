@@ -29,6 +29,9 @@ function showLogin(message, pending) {
 }
 
 try {
+  if (Object.values(firebaseConfig).some(value => !value)) {
+    throw new Error('portal/not-configured');
+  }
   const [appSdk, authSdk, firestoreSdk] = await Promise.all([
     import('https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js'),
     import('https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js'),
@@ -98,8 +101,11 @@ try {
       showLogin('No se pudo cerrar la sesión. Recarga la página e inténtalo nuevamente.', false);
     }
   };
-} catch {
+} catch (error) {
   clearPortal();
-  showLogin('No se pudo conectar el servicio de ingreso. Recarga la página para reintentar.', true);
-  login.textContent = 'Acceso no disponible';
+  const pendingConfiguration = error.message === 'portal/not-configured';
+  showLogin(pendingConfiguration
+    ? 'El acceso institucional todavía no está habilitado.'
+    : 'No se pudo conectar el servicio de ingreso. Recarga la página para reintentar.', true);
+  login.textContent = pendingConfiguration ? 'Acceso pendiente' : 'Acceso no disponible';
 }
