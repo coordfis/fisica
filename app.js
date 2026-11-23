@@ -3,7 +3,7 @@ export function startPortal(data) {
 
   const { tipos } = data;
   const siteDiraje = {
-    titulo: 'Site Diraje',
+    titulo: 'Site',
     tipo: 'otros',
     url: 'https://asesortecnologico.github.io/5to_SanMarcos_2027/'
   };
