@@ -1,7 +1,19 @@
 export function startPortal(data) {
   'use strict';
 
-  const { programas, tipos } = data;
+  const { tipos } = data;
+  const siteDiraje = {
+    titulo: 'Site Diraje',
+    tipo: 'otros',
+    url: 'https://asesortecnologico.github.io/5to_SanMarcos_2027/'
+  };
+  const programas = data.programas.map(program => {
+    if (program.id !== 'quinto-san-marcos') return program;
+    const recursos = program.recursos ?? [];
+    // Si el sitio ya figura en el catálogo, conservar un solo acceso.
+    const otrosRecursos = recursos.filter(resource => resource.url !== siteDiraje.url);
+    return { ...program, recursos: [...otrosRecursos, siteDiraje] };
+  });
   const esc = value => String(value ?? '').replace(/[&<>"']/g, character => ({
     '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
   }[character]));

@@ -1,6 +1,6 @@
 import { firebaseConfig, portalDocument } from './firebase-config.js';
 import { createAccessController } from './access-policy.js';
-import { startPortal } from './app.js?v=20261112-visual1';
+import { startPortal } from './app.js?v=20261123-diraje';
 
 const screen = document.querySelector('#auth-screen');
 const portal = document.querySelector('#portal');
